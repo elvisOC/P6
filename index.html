@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Site de streaming">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Juststreamit</title>
+        <link rel="icon" type="image/x-icon" href="./images/logo.png">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <nav class="navbar bg-body-tertiary">
+                    <div class="container-fluid">
+                        <article>
+                            <img class="col-xs-12 col-sm-12 col-md-4 col-lg-4" src="./images/logo.png">
+                        </article>
+                        <article>
+                            <h1 class="hidden-xs hidden-sm col-md-12 col-lg-12">
+                                Vidéos à la demande
+                            </h1>
+                        </article>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+        <div class="container-fluid">
+            <div class="container">
+                <article class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <h1>Meilleur Film
+                    </h1>
+                </article>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <article class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <img class="fit-picture" src="./images/logo.png">
+                    </article>
+                    <article class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <h1>Title</h1>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, dolores quibusdam? Laudantium omnis nam eligendi rerum corporis ab et quaerat placeat tempore natus? Sapiente maxime sed debitis a porro hic!
+                        </p>
+                        <button class="btn btn-custom">Details</button>
+                    </article>
+                </div>
+                <div class="jumbotron">
+                    <h1>Hello World</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam magnam possimus animi in. Maxime nulla totam blanditiis fugiat facere ipsam voluptatum possimus. Nam minus quo totam repellendus placeat, voluptatum voluptatem.</p>
+                </div>
+            </div>
+        </div>
+        
+        <section id="top-movies">
+            <h2>Films les mieux notés</h2>
+            <div class="movies-container"></div>
+            <button class="see-more">Voir plus</button>
+        </section>
+
+        <section class="category" id="category-1">
+            <h2>Catégorie 1</h2>
+            <div class="movies-container"></div>
+            <button class="see-more">Voir plus</button>
+        </section>
+
+        <section class="category" id="category-2">
+            <h2>Catégorie 2</h2>
+            <div class="movies-container"></div>
+            <button class="see-more">Voir plus</button>
+        </section>
+
+        <section id="custom-category">
+            <h2>Catégorie libre</h2>
+            <select id="category-select"></select>
+            <div class="movies-container"></div>
+            <button class="see-more">Voir plus</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
