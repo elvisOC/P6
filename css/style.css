@@ -1,0 +1,40 @@
+.titre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    border-top: 1px black solid;
+    border-bottom: 1px black solid;
+    border-left: 1px black solid;
+    border-right: 1px black solid;
+    background-color: #61787F;
+    padding: auto;
+    background-image: url('../images/logo.png');
+    background-repeat: no-repeat;
+    height: 150px;
+    background-size: auto 170px;
+    margin: 50px;
+}
+.best-movie {
+    font-size: 48px;
+    font-weight: 600;
+    margin: 50px;
+}
+.btn-custom {
+    align-items: end;
+    border-color: #FA0B0B;
+    background-color: #FA0B0B ;
+    border-radius: 25px;
+    width: 166px;
+    height: 68px;
+    color: white;
+    font-weight: 500;
+    font-size: 24px;
+}
+#best-movie-title {
+    text-align: center;
+    margin-top: 0px;
+}
+
