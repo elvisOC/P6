@@ -340,6 +340,75 @@ and (max-width: 640px){
     width: 100px;
 }
 
+/*other category*/
+#other-category-0-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+    position: relative;
+}
+#other-category-1-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+    position: relative;
+}
+#other-category-2-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+    position: relative;
+}
+#other-category-3-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+    position: relative;
+}
+#other-category-4-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+    position: relative;
+}
+#other-category-5-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+    position: relative;
+}
+
+#others-category-0-modal-img{
+    width: 100px;
+}
+#others-category-1-modal-img{
+    width: 100px;
+}
+#others-category-2-modal-img{
+    width: 100px;
+}
+#others-category-3-modal-img{
+    width: 100px;
+}
+#others-category-4-modal-img{
+    width: 100px;
+}
+#others-category-5-modal-img{
+    width: 100px;
+}
+
 
 .maintxt {position: relative;}
 .maintxt > img, .overlay-text {position: absolute;}

@@ -5,10 +5,10 @@ async function bestMovie (){
             "Accept": "application/json"
         }
     })
-    if (r.ok === true) {
-        return r.json();
+    if (!r.ok) {
+        throw new Error('Impossible de se connecter au serveur')
     }
-    throw new Error('Impossible de se connecter au serveur')
+    return r.json()
 }
 
 async function bestMovieDataIMDB() {
@@ -20,10 +20,10 @@ async function bestMovieDataIMDB() {
             "Accept": "application/json"
         }
     })
-    if (r.ok === true) {
-        return r.json();
+    if (!r.ok) {
+        throw new Error('Impossible de se connecter au serveur')
     }
-    throw new Error('Impossible de se connecter au serveur')
+    return r.json()
 }
 
 async function bestMovie2 (){
@@ -33,10 +33,10 @@ async function bestMovie2 (){
             "Accept": "application/json"
         }
     })
-    if (r.ok === true) {
-        return r.json();
+    if (!r.ok) {
+        throw new Error('Impossible de se connecter au serveur')
     }
-    throw new Error('Impossible de se connecter au serveur')
+    return r.json()
 }
 
 async function bestMovieSciFi(){
@@ -46,10 +46,10 @@ async function bestMovieSciFi(){
             "Accept": "application/json"
         }
     })
-    if (r.ok === true) {
-        return r.json();
+    if (!r.ok) {
+        throw new Error('Impossible de se connecter au serveur')
     }
-    throw new Error("Impossible de se connecter au serveur")
+    return r.json()
 }
 
 async function bestMovieSciFi2(){
@@ -59,10 +59,10 @@ async function bestMovieSciFi2(){
             "Accept": "application/json"
         }
     })
-    if (r.ok === true) {
-        return r.json();
+    if (!r.ok) {
+        throw new Error('Impossible de se connecter au serveur')
     }
-    throw new Error("Impossible de se connecter au serveur")
+    return r.json()
 }
 
 async function bestMovieAction(){
@@ -73,7 +73,7 @@ async function bestMovieAction(){
         }
     })
     if (r.ok === true) {
-        return r.json();
+        return r.json()
     }
     throw new Error("Impossible de se connecter au serveur")
 }
@@ -85,10 +85,23 @@ async function bestMovieAction2(){
             "Accept": "application/json"
         }
     })
-    if (r.ok === true) {
-        return r.json();
+    if (!r.ok) {
+        throw new Error("Impossible de se connecter au serveur")
     }
-    throw new Error("Impossible de se connecter au serveur")
+    return r.json()
+}
+
+async function otherCategory(category){
+    const r = await fetch(`http://127.0.0.1:8000/api/v1/titles/?sort_by=-imdb_score&genre=${category}`, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json"
+        }
+    })
+    if (!r.ok) {
+        throw new Error("Impossible de se connecter au serveur")
+    }
+    return r.json()
 }
 
 bestMovie().then(movie => document.getElementById("best-movie-title").textContent = movie.results[0].title)
@@ -438,7 +451,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             document.getElementById(`second-category-${i}-modal-actors`).textContent = `Acteurs : ${movie.actors}`
                             document.getElementById(`second-category-${i}-modal-duree`).textContent = `Durée : ${movieDataIMDB.Runtime}`
                             document.getElementById(`second-category-${i}-modal-pays`).textContent = `Pays : ${movieDataIMDB.Country}`
-                            document.getElementById(`fsecond-category-${i}-modal-boxoffice`).textContent = `Box-Office : ${movieDataIMDB.BoxOffice}`
+                            document.getElementById(`second-category-${i}-modal-boxoffice`).textContent = `Box-Office : ${movieDataIMDB.BoxOffice}`
                             document.getElementById(`second-category-${i}-modal-resume`).textContent = `Resumé : ${movieDataIMDB.Plot}`
                         } else {
                             console.warn(`Aucune donnée pour le film ${i}`)
@@ -450,6 +463,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     try {
                         let movieData = await bestMovieAction2()
                         let movie = movieData.results[i - 6]
+                        console.log(movie)
                         let idPrefix = "tt0"
                         let id = movie.id
                         let imdbID = idPrefix + id
@@ -466,7 +480,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             document.getElementById(`second-category-${i}-modal-actors`).textContent = `Acteurs : ${movie.actors}`
                             document.getElementById(`second-category-${i}-modal-duree`).textContent = `Durée : ${movieDataIMDB.Runtime}`
                             document.getElementById(`second-category-${i}-modal-pays`).textContent = `Pays : ${movieDataIMDB.Country}`
-                            document.getElementById(`fsecond-category-${i}-modal-boxoffice`).textContent = `Box-Office : ${movieDataIMDB.BoxOffice}`
+                            document.getElementById(`second-category-${i}-modal-boxoffice`).textContent = `Box-Office : ${movieDataIMDB.BoxOffice}`
                             document.getElementById(`second-category-${i}-modal-resume`).textContent = `Resumé : ${movieDataIMDB.Plot}`
                         } else {
                             console.warn(`Aucune donnée pour le film ${i}`)
@@ -491,4 +505,172 @@ document.addEventListener("DOMContentLoaded", function () {
         console.warn(`Bouton details introuvable pour le film ${i}`)
         }
     }
-});
+})
+
+//Autres 1
+async function getAllCategories() {
+    let url = "http://127.0.0.1:8000/api/v1/genres";
+    let categories = []
+
+    while (url) {
+        const r = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            }
+        });
+
+        if (!r.ok) {
+            throw new Error("Impossible de se connecter au serveur")
+        }
+
+        const data = await r.json()
+        categories = categories.concat(data.results) 
+
+        url = data.next
+    }
+
+    addCategoriesToSelect(categories)
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+    const container = document.getElementById("category-info")
+    for (let i = 0; i <= 5; i++){
+        let modalHTML = `
+                <div class="col mt-5">
+                    <div class="image-container">
+                        <img id="others-category-${i}-img" src="" width="400em" alt="">
+                        <div class="overlay" id="others-category-${i}-details-btn">Détails</div>
+                        <div id="others-category-modal-container"></div>
+                    <div id="others-category-${i}-modal" class="modal">
+                            <div id="others-category-${i}-modal-content "class="modal-content">
+                                <span id="others-category-${i}-modal-close" class="close">&times;</span>
+                                <h2>Détails du film</h2>
+                                <p id="others-category-${i}-modal-text"></p>
+                                <img id="others-category-${i}-modal-img" src="">
+                                <p id="others-category-${i}-modal-title"></p>
+                                <p id="others-category-${i}-modal-genre"></p>
+                                <p id="others-category-${i}-modal-sortie"></p>
+                                <p id="others-category-${i}-modal-pegi"></p>
+                                <p id="others-category-${i}-modal-score"></p>
+                                <p id="others-category-${i}-modal-director"></p>
+                                <p id="others-category-${i}-modal-actors"></p>
+                                <p id="others-category-${i}-modal-duree"></p>
+                                <p id="others-category-${i}-modal-pays"></p>
+                                <p id="others-category-${i}-modal-boxoffice"></p>
+                                <p id="others-category-${i}-modal-resume"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+            container.insertAdjacentHTML("beforeend", modalHTML)
+    }})
+
+function addCategoriesToSelect(categories) {
+    const select = document.getElementById("autres-select-1")
+    categories.forEach(category => {
+        const option = document.createElement("option")
+        option.value = category.id
+        option.textContent = category.name
+        select.appendChild(option)
+    })
+    let selectedCategoryDiv = document.createElement("div")
+    selectedCategoryDiv.id = "selected-category"
+    select.parentNode.appendChild(selectedCategoryDiv)
+    
+    select.addEventListener("change", async function () {
+        let selectedCategoryId = select.value
+        let selectedCategory = categories.find(cat => cat.id == selectedCategoryId)
+        let category = selectedCategory.name
+        document.getElementById("selected-category").setAttribute("data-value", `${category}`)
+        movieData = await otherCategory(category) 
+        movie = movieData.results
+        for(let i = 0; i < 5; i++) {
+            document.getElementById(`others-category-${i}-img`).src = movie[i].image_url
+            let modal = document.getElementById(`others-category-${i}-modal`)
+            let detailBtn = document.getElementById(`others-category-${i}-details-btn`)
+            let modalClose = document.getElementById(`others-category-${i}-modal-close`)
+            let modalText = document.getElementById(`others-category-${i}-modal-text`)
+    
+            if (detailBtn){
+                detailBtn.addEventListener("click", async function() {
+                    modal.style.display = "flex"
+                    if (i <= 4){
+                        try {
+                            let movieData = await otherCategory(category)
+                            let movie = movieData.results[i]
+                            let idPrefix = "tt0"
+                            let id = movie.id
+                            let imdbID = idPrefix + id
+                            let response = await fetch(`http://www.omdbapi.com/?apikey=ab6f1b46&i=${imdbID}&plot=full`)
+                            let movieDataIMDB = await response.json()
+                            if(movie) {
+                                document.getElementById(`others-category-${i}-modal-img`).src = movie.image_url
+                                document.getElementById(`others-category-${i}-modal-title`).textContent = `Titre : ${movie.title}`
+                                document.getElementById(`others-category-${i}-modal-genre`).textContent = `Genre(s) : ${movie.genres}`
+                                document.getElementById(`others-category-${i}-modal-sortie`).textContent = `Date de sortie : ${movie.year}`
+                                //document.getElementById(`others-category-${i}-modal-pegi`).textContent = movie.genres
+                                document.getElementById(`others-category-${i}-modal-score`).textContent = `Score IMDB : ${movie.imdb_score}`
+                                document.getElementById(`others-category-${i}-modal-director`).textContent = `Réalisateur(s) : ${movie.directors}`
+                                document.getElementById(`others-category-${i}-modal-actors`).textContent = `Acteurs : ${movie.actors}`
+                                document.getElementById(`others-category-${i}-modal-duree`).textContent = `Durée : ${movieDataIMDB.Runtime}`
+                                document.getElementById(`others-category-${i}-modal-pays`).textContent = `Pays : ${movieDataIMDB.Country}`
+                                document.getElementById(`others-category-${i}-modal-boxoffice`).textContent = `Box-Office : ${movieDataIMDB.BoxOffice}`
+                                document.getElementById(`others-category-${i}-modal-resume`).textContent = `Resumé : ${movieDataIMDB.Plot}`
+                            } else {
+                                console.warn(`Aucune donnée pour le film ${i}`)
+                            }
+                        } catch(error) {
+                            console.error("Erreur lors du chargement des données")
+                        }
+                    } else {
+                        try {
+                            let movieData = await bestMovieAction2()
+                            let movie = movieData.results[i - 5]
+                            console.log(movie)
+                            let idPrefix = "tt0"
+                            let id = movie.id
+                            let imdbID = idPrefix + id
+                            let response = await fetch(`http://www.omdbapi.com/?apikey=ab6f1b46&i=${imdbID}&plot=full`)
+                            let movieDataIMDB = await response.json()
+                            if(movie) {
+                                document.getElementById(`others-category-${i}-modal-img`).src = movie.image_url
+                                document.getElementById(`others-category-${i}-modal-title`).textContent = `Titre : ${movie.title}`
+                                document.getElementById(`others-category-${i}-modal-genre`).textContent = `Genre(s) : ${movie.genres}`
+                                document.getElementById(`others-category-${i}-modal-sortie`).textContent = `Date de sortie : ${movie.year}`
+                                //document.getElementById(`others-category-${i}-modal-pegi`).textContent = movie.genres
+                                document.getElementById(`others-category-${i}-modal-score`).textContent = `Score IMDB : ${movie.imdb_score}`
+                                document.getElementById(`others-category-${i}-modal-director`).textContent = `Réalisateur(s) : ${movie.directors}`
+                                document.getElementById(`others-category-${i}-modal-actors`).textContent = `Acteurs : ${movie.actors}`
+                                document.getElementById(`others-category-${i}-modal-duree`).textContent = `Durée : ${movieDataIMDB.Runtime}`
+                                document.getElementById(`others-category-${i}-modal-pays`).textContent = `Pays : ${movieDataIMDB.Country}`
+                                document.getElementById(`others-category-${i}-modal-boxoffice`).textContent = `Box-Office : ${movieDataIMDB.BoxOffice}`
+                                document.getElementById(`others-category-${i}-modal-resume`).textContent = `Resumé : ${movieDataIMDB.Plot}`
+                            } else {
+                                console.warn(`Aucune donnée pour le film ${i}`)
+                            }
+                        } catch(error) {
+                            console.error("Erreur lors du chargement des données")
+                        }
+                    }
+    
+            })
+            
+            modalClose.addEventListener("click", function() {
+                modal.style.display = "none"
+            });
+    
+            window.addEventListener("click", function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "none"
+                }
+            });
+            } else {
+            console.warn(`Bouton details introuvable pour le film ${i}`)
+            }
+            
+        }
+    })
+}
+
+getAllCategories().catch(error => console.error(error))
