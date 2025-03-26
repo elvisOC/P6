@@ -86,7 +86,7 @@ and (max-width: 640px){
     border: black;
 }
 .modal-content{
-    width: 100%;
+    width: 50%;
 }
 .modal-header{
     display: flex;
