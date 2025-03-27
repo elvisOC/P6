@@ -123,13 +123,13 @@ function bestMovieCategory() {
                             <div id="best-movie-${i}-modal-content" class="modal-content">
                                 <div class="modal-header">
                                     <div class="modal-infos">
-                                        <h2 id="best-movie-${i}-modal-title"><br></h2>
-                                        <p id="best-movie-${i}-first-line"><br></p>
-                                        <p id="best-movie-${i}-second-line"><br></p>
-                                        <p id="best-movie-${i}-third-line"><br></p>
-                                        <p id="best-movie-${i}-fourth-line"><br></p>
+                                        <h2 id="best-movie-${i}-modal-title"></h2>
+                                        <p id="best-movie-${i}-first-line"></p>
+                                        <p id="best-movie-${i}-second-line"></p>
+                                        <p id="best-movie-${i}-third-line"></p>
+                                        <p id="best-movie-${i}-fourth-line"></p>
                                         <p>Réalisé par :</p>
-                                        <p id="best-movie-${i}-fifth-line"><br></p>
+                                        <p id="best-movie-${i}-fifth-line"></p>
                                     </div>
                                     <div class="modal-image">
                                         <img id="best-movie-${i}-modal-img" src="">
@@ -212,13 +212,13 @@ function firstCategory() {
                                 <div id="first-category-${i}-modal-content" class="modal-content">
                                     <div class="modal-header">
                                         <div class="modal-infos">
-                                            <h2 id="first-category-${i}-modal-title"><br></h2>
-                                            <p id="first-category-${i}-first-line"><br></p>
-                                            <p id="first-category-${i}-second-line"><br></p>
-                                            <p id="first-category-${i}-third-line"><br></p>
-                                            <p id="first-category-${i}-fourth-line"><br></p>
+                                            <h2 id="first-category-${i}-modal-title"></h2>
+                                            <p id="first-category-${i}-first-line"></p>
+                                            <p id="first-category-${i}-second-line"></p>
+                                            <p id="first-category-${i}-third-line"></p>
+                                            <p id="first-category-${i}-fourth-line"></p>
                                             <p>Réalisé par :</p>
-                                            <p id="first-category-${i}-fifth-line"><br></p>
+                                            <p id="first-category-${i}-fifth-line"></p>
                                         </div>
                                         <div class="modal-image">
                                             <img id="first-category-${i}-modal-img" src="">
@@ -301,13 +301,13 @@ function secondCategory(){
                             <div id="second-category-${i}-modal-content" class="modal-content">
                                 <div class="modal-header">
                                     <div class="modal-infos">
-                                        <h2 id="second-category-${i}-modal-title"><br></h2>
-                                        <p id="second-category-${i}-first-line"><br></p>
-                                        <p id="second-category-${i}-second-line"><br></p>
-                                        <p id="second-category-${i}-third-line"><br></p>
-                                        <p id="second-category-${i}-fourth-line"><br></p>
+                                        <h2 id="second-category-${i}-modal-title"></h2>
+                                        <p id="second-category-${i}-first-line"></p>
+                                        <p id="second-category-${i}-second-line"></p>
+                                        <p id="second-category-${i}-third-line"></p>
+                                        <p id="second-category-${i}-fourth-line"></p>
                                         <p>Réalisé par :</p>
-                                        <p id="second-category-${i}-fifth-line"><br></p>
+                                        <p id="second-category-${i}-fifth-line"></p>
                                     </div>
                                     <div class="modal-image">
                                         <img id="second-category-${i}-modal-img" src="">
@@ -407,13 +407,13 @@ document.addEventListener("DOMContentLoaded", function(){
                                 <div id="others-category-${i}-modal-content" class="modal-content">
                                     <div class="modal-header">
                                         <div class="modal-infos">
-                                            <h2 id="others-category-${i}-modal-title"><br></h2>
-                                            <p id="others-category-${i}-first-line"><br></p>
-                                            <p id="others-category-${i}-second-line"><br></p>
-                                            <p id="others-category-${i}-third-line"><br></p>
-                                            <p id="others-category-${i}-fourth-line"><br></p>
+                                            <h2 id="others-category-${i}-modal-title"></h2>
+                                            <p id="others-category-${i}-first-line"></p>
+                                            <p id="others-category-${i}-second-line"></p>
+                                            <p id="others-category-${i}-third-line"></p>
+                                            <p id="others-category-${i}-fourth-line"></p>
                                             <p>Réalisé par :</p>
-                                            <p id="others-category-${i}-fifth-line"><br></p>
+                                            <p id="others-category-${i}-fifth-line"></p>
                                         </div>
                                         <div class="modal-image">
                                             <img id="others-category-${i}-modal-img" src="">
