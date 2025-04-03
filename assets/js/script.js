@@ -65,6 +65,10 @@ async function acceuilBestMovie() {
 }
 acceuilBestMovie()
 
+//Bouton voir plus et voir moins
+
+
+
 
 //First Best Movie
 
@@ -120,8 +124,8 @@ function bestMovieCategory() {
                     <img id="best-movie-${i}-img" src="" width="400em" alt="">
                     <div class="overlay" id="best-movie-${i}-details-btn">Détails</div>
                         <div id="best-movie-${i}-modal" class="modal">
-                            <div id="best-movie-${i}-modal-content" class="modal-content">
-                                <div class="modal-header">
+                            <div id="best-movie-${i}-custom-modal-content" class="custom-modal-content">
+                                <div class="custom-modal-header">
                                     <div class="modal-infos">
                                         <h2 id="best-movie-${i}-modal-title"></h2>
                                         <p id="best-movie-${i}-first-line"></p>
@@ -135,11 +139,11 @@ function bestMovieCategory() {
                                         <img id="best-movie-${i}-modal-img" src="">
                                     </div>
                                 </div>
-                                <div class="modal-body">
+                                <div class="custom-modal-body">
                                     <p id="best-movie-${i}-modal-resume"></p>
                                     <p id="best-movie-${i}-modal-actors"></p>
                                 </div>
-                                <div class="modal-footer">
+                                <div class="custom-modal-footer">
                                     <button id ="best-movie-${i}-modal-close" class="close" class="text-center">Fermer</button>
                                 </div>
                             </div>
@@ -185,7 +189,20 @@ function bestMovieCategory() {
             } else {
             console.warn(`Bouton details introuvable pour le film ${i}`)
             }
+            
         }
+        document.getElementById("toggleButton-best-movie").addEventListener("click", function() {
+            let container = document.getElementById("contentContainer")
+            let isExpanded = container.classList.contains("show-all")
+
+            if (isExpanded) {
+                container.classList.remove("show-all")
+                this.textContent = "Voir plus"
+            } else {
+                container.classList.add("show-all")
+                this.textContent = "Voir moins"
+            }
+        })
     })
 }
 bestMovieCategory()
@@ -209,8 +226,8 @@ function firstCategory() {
                         <img id="first-category-${i}-img" src="" width="400em" alt=""> 
                         <div class="overlay" id="first-category-${i}-details-btn">Détails</div>
                             <div id="first-category-${i}-modal" class="modal">
-                                <div id="first-category-${i}-modal-content" class="modal-content">
-                                    <div class="modal-header">
+                                <div id="first-category-${i}-custom-modal-content" class="custom-modal-content">
+                                    <div class="custom-modal-header">
                                         <div class="modal-infos">
                                             <h2 id="first-category-${i}-modal-title"></h2>
                                             <p id="first-category-${i}-first-line"></p>
@@ -224,11 +241,11 @@ function firstCategory() {
                                             <img id="first-category-${i}-modal-img" src="">
                                         </div>
                                     </div>
-                                    <div class="modal-body">
+                                    <div class="custom-modal-body">
                                         <p id="first-category-${i}-modal-resume"></p>
                                         <p id="first-category-${i}-modal-actors"></p>
                                     </div>
-                                    <div class="modal-footer">
+                                    <div class="custom-modal-footer">
                                         <button id ="first-category-${i}-modal-close" class="close" class="text-center">Fermer</button>
                                     </div>
                                 </div>
@@ -276,6 +293,18 @@ function firstCategory() {
             console.warn(`Bouton details introuvable pour le film ${i}`)
             }
         }
+        document.getElementById("toggleButton-first-category").addEventListener("click", function() {
+            let container = document.getElementById("contentContainer")
+            let isExpanded = container.classList.contains("show-all")
+
+            if (isExpanded) {
+                container.classList.remove("show-all")
+                this.textContent = "Voir plus"
+            } else {
+                container.classList.add("show-all")
+                this.textContent = "Voir moins"
+            }
+        })
     })
 }
 firstCategory()
@@ -298,8 +327,8 @@ function secondCategory(){
                     <img id="second-category-${i}-img" src="" width="400em" alt=""> 
                     <div class="overlay" id="second-category-${i}-details-btn">Détails</div>
                         <div id="second-category-${i}-modal" class="modal">
-                            <div id="second-category-${i}-modal-content" class="modal-content">
-                                <div class="modal-header">
+                            <div id="second-category-${i}-custom-modal-content" class="custom-modal-content">
+                                <div class="custom-modal-header">
                                     <div class="modal-infos">
                                         <h2 id="second-category-${i}-modal-title"></h2>
                                         <p id="second-category-${i}-first-line"></p>
@@ -313,11 +342,11 @@ function secondCategory(){
                                         <img id="second-category-${i}-modal-img" src="">
                                     </div>
                                 </div>
-                                <div class="modal-body">
+                                <div class="custom-modal-body">
                                     <p id="second-category-${i}-modal-resume"></p>
                                     <p id="second-category-${i}-modal-actors"></p>
                                 </div>
-                                <div class="modal-footer">
+                                <div class="custom-modal-footer">
                                     <button id ="second-category-${i}-modal-close" class="close" class="text-center">Fermer</button>
                                 </div>
                             </div>
@@ -364,6 +393,18 @@ function secondCategory(){
             console.warn(`Bouton details introuvable pour le film ${i}`)
             }
         }
+        document.getElementById("toggleButton-second-category").addEventListener("click", function() {
+            let container = document.getElementById("contentContainer")
+            let isExpanded = container.classList.contains("show-all")
+
+            if (isExpanded) {
+                container.classList.remove("show-all")
+                this.textContent = "Voir plus"
+            } else {
+                container.classList.add("show-all")
+                this.textContent = "Voir moins"
+            }
+        })
     })
 }
 secondCategory()
@@ -404,8 +445,8 @@ document.addEventListener("DOMContentLoaded", function(){
                         <div class="overlay" id="others-category-${i}-details-btn">Détails</div>
                         <div id="others-category-modal-container"></div>
                             <div id="others-category-${i}-modal" class="modal">
-                                <div id="others-category-${i}-modal-content" class="modal-content">
-                                    <div class="modal-header">
+                                <div id="others-category-${i}-custom-modal-content" class="custom-modal-content">
+                                    <div class="custom-modal-header">
                                         <div class="modal-infos">
                                             <h2 id="others-category-${i}-modal-title"></h2>
                                             <p id="others-category-${i}-first-line"></p>
@@ -419,11 +460,11 @@ document.addEventListener("DOMContentLoaded", function(){
                                             <img id="others-category-${i}-modal-img" src="">
                                         </div>
                                     </div>
-                                    <div class="modal-body">
+                                    <div class="custom-modal-body">
                                         <p id="others-category-${i}-modal-resume"></p>
                                         <p id="others-category-${i}-modal-actors"></p>
                                     </div>
-                                    <div class="modal-footer">
+                                    <div class="custom-modal-footer">
                                         <button id ="others-category-${i}-modal-close" class="close" class="text-center">Fermer</button>
                                     </div>
                                 </div>
@@ -496,7 +537,20 @@ function addCategoriesToSelect(categories) {
                     }
                 )
             }
+            document.getElementById("toggleButton-others-category").addEventListener("click", function() {
+                let container = document.getElementById("contentContainer")
+                let isExpanded = container.classList.contains("show-all")
+    
+                if (isExpanded) {
+                    container.classList.remove("show-all")
+                    this.textContent = "Voir plus"
+                } else {
+                    container.classList.add("show-all")
+                    this.textContent = "Voir moins"
+                }
+            })
         }
     )
 }
 getAllCategories().catch(error => console.error(error))
+

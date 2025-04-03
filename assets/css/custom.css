@@ -1,4 +1,4 @@
-
+/*Nav-bar*/
 /* For Mobile Portrait View */
 @media screen
 and (max-width: 480px)
@@ -29,23 +29,71 @@ and (orientation: landscape){
     }
 }
 
-/* For Mobile Phones Portrait or Landscape View */
-@media screen
-and (max-width: 640px){
-    #logo{
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
+
+/*Fin nav-bar*/
+
+
+/*6 films*/
+
+/* Tablettes : 4 éléments visibles */
+@media screen 
+and (min-width: 769px)
+and (max-width: 1024px) {
+    .col {
+        width: calc(50% - 10px); /* 2 colonnes */
     }
-    #catchword{
-        visibility: hidden;
+    .show-more {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .container:not(.show-all) .col:nth-child(n+5) {
+        display: none;
+    }
+}
+
+
+/* Téléphone : 2 éléments visibles */
+@media screen 
+and (max-width: 768px)
+and (orientation: portrait){
+    .container:not(.show-all) .col:nth-child(n+3) {
+        display: none;
+    }
+    .show-more {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+}
+
+@media screen 
+and (min-width: 1025px){
+    .show-more{
+        display: none;
     }
 }
 
 #logo {
     width: 15em;
 }
+#catchword{
+    margin-left: 2em;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.col {
+    width: 100%;
+}
+
+
+
+
 .overlay {
     position: absolute;
     top: 0;
@@ -70,6 +118,9 @@ and (max-width: 640px){
     color: white;
     font-weight: 500;
     font-size: 24px;
+    position: absolute;
+    bottom: 2em;
+    right: 2em;
 }
 .modal {
     display: none;  
@@ -85,10 +136,14 @@ and (max-width: 640px){
     justify-content: center;
     border: black;
 }
-.modal-content{
+.custom-modal-content{
+    background: white;
+    padding: 20px;
     width: 50%;
+    text-align: center;
+    position: relative;
 }
-.modal-header{
+.custom-modal-header{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -106,242 +161,41 @@ and (max-width: 640px){
     object-fit: cover;
 }
 
-.modal-body{
+.custom-modal-body{
     margin-top: 20px;
     width: 100%;
     text-align: start;
 }
 
-.modal-footer{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
 .close {
     background-color: #FA0B0B;
     color: white;
-    padding: 10px 20px;
+    padding: 2px 4px 2px 4px;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
     font-size: 16px;
+    width: 214px;
+    height: 36px;
 }
 
+.toggleButton{
+    background-color: #FA0B0B;
+    color: white;
+    padding: 2px 4px 2px 4px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 214px;
+    height: 36px;
+    position: absolute;
+}
 
-/*Best movie end style*/
-
-/*Best movie 1-6 style*/
 .image-container {
     position: relative;
     display: inline-block;
 }
-
-#best-movie-1-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#best-movie-2-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#best-movie-3-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#best-movie-4-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#best-movie-5-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#best-movie-6-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-
-
-
-/*Best movie 1-6 style end*/
-
-/*First-category 1-6 style*/
-#first-category-1-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#first-category-2-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#first-category-3-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#first-category-4-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#first-category-5-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#first-category-6-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-
-
-/*Second-category 1-6*/
-
-#second-category-1-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#second-category-2-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#second-category-3-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#second-category-4-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#second-category-5-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#second-category-6-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-
-
-/*other category*/
-#other-category-0-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#other-category-1-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#other-category-2-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#other-category-3-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#other-category-4-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-#other-category-5-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-
 
 .maintxt {position: relative;}
 .maintxt > img, .overlay-text {position: absolute;}

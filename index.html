@@ -30,12 +30,14 @@
                     <p id="best-movie-title" class="card-title h1 h4-sm"></p>
                     <p  id="best-movie-resume" class="card-text"></p>
                     <div class="text-end">
-                        <button id="best-movie-btn-details" type="button" class="btn btn-custom" data-toggle="modal" data-target="#bestMovieModal">
-                            Détails
-                        </button>
+                        <div>
+                            <button id="best-movie-btn-details" type="button" class="btn btn-custom" data-toggle="modal" data-target="#bestMovieModal">
+                                Détails
+                            </button>
+                        </div>
                         <div id="best-movie-modal" class="modal">
-                            <div id="best-movie-modal-content" class="modal-content">
-                                <div class="modal-header">
+                            <div id="best-movie-modal-content" class="custom-modal-content">
+                                <div class="custom-modal-header">
                                     <div class="modal-infos">
                                         <h2 id="best-movie-modal-title"><br></h2>
                                         <p id="best-movie-first-line"><br></p>
@@ -49,12 +51,12 @@
                                         <img id="best-movie-modal-img" src="">
                                     </div>
                                 </div>
-                                <div class="modal-body">
+                                <div class="custom-modal-body">
                                     <p id="best-movie-modal-resume"></p>
                                     <p id="best-movie-modal-actors"></p>
                                 </div>
-                                <div class="modal-footer">
-                                    <button id ="best-movie-modal-close" class="close" class="text-center">Fermer</button>
+                                <div class="custom-modal-footer text-center">
+                                    <button id ="best-movie-modal-close" class="close text-center">Fermer</button>
                                 </div>
                             </div>
                         </div>
@@ -62,19 +64,28 @@
                 </div>
             </div>
         </div>
-        <div class="container mt-5">
+        <div class="container mt-5" id="contentContainer">
             <h1><b>Films les mieux notés</b></h1>
             <div class="row" id="row-best-movie">
+            </div>
+            <div class="show-more">
+                <button class="toggleButton" id="toggleButton-best-movie">Voir plus</button>
             </div>
         </div>
         <div class="container mt-5">
             <h1><b>Science-fiction</b></h1>
             <div class="row" id="row-first-category">
             </div>
+            <div class="show-more">
+                <button class="toggleButton" id="toggleButton-first-category">Voir plus</button>
+            </div>
         </div>
         <div class="container mt-5">
             <h1><b>Action</b></h1>
             <div class="row" id="row-second-category">
+            </div>
+            <div class="show-more">
+                <button class="toggleButton" id="toggleButton-second-category">Voir plus</button>
             </div>
         </div>
         <div class="container mt-5">
@@ -83,6 +94,9 @@
                 <option value="">Choisir une catégorie</option>
             </select>
             <div class="row" id="category-info">
+            </div>
+            <div class="show-more">
+                <button class="toggleButton" id="toggleButton-select-1">Voir plus</button>
             </div>
         </div>
     </body>
