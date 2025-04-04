@@ -192,7 +192,7 @@ function bestMovieCategory() {
             
         }
         document.getElementById("toggleButton-best-movie").addEventListener("click", function() {
-            let container = document.getElementById("contentContainer")
+            let container = document.getElementById("contentContainer-best-movie")
             let isExpanded = container.classList.contains("show-all")
 
             if (isExpanded) {
@@ -294,7 +294,7 @@ function firstCategory() {
             }
         }
         document.getElementById("toggleButton-first-category").addEventListener("click", function() {
-            let container = document.getElementById("contentContainer")
+            let container = document.getElementById("contentContainer-first-category")
             let isExpanded = container.classList.contains("show-all")
 
             if (isExpanded) {
@@ -356,8 +356,18 @@ function secondCategory(){
     
     
             container.insertAdjacentHTML("beforeend", modalHTML)
+
+            try {
+                let response = await fetch(movie.image_url)
+                console.log(response.status)
+            } catch(error){
+                console.log(error)
+                document.getElementById(`second-category-${i}-img`).src = "./assets/img/imgnotfound.png"
+            }
+
+
             document.getElementById(`second-category-${i}-img`).src = movie.image_url
-    
+
             let modal = document.getElementById(`second-category-${i}-modal`)
             let detailBtn = document.getElementById(`second-category-${i}-details-btn`)
             let modalClose = document.getElementById(`second-category-${i}-modal-close`)
@@ -394,7 +404,7 @@ function secondCategory(){
             }
         }
         document.getElementById("toggleButton-second-category").addEventListener("click", function() {
-            let container = document.getElementById("contentContainer")
+            let container = document.getElementById("contentContainer-second-category")
             let isExpanded = container.classList.contains("show-all")
 
             if (isExpanded) {
@@ -538,7 +548,7 @@ function addCategoriesToSelect(categories) {
                 )
             }
             document.getElementById("toggleButton-others-category").addEventListener("click", function() {
-                let container = document.getElementById("contentContainer")
+                let container = document.getElementById("contentContainer-others-1")
                 let isExpanded = container.classList.contains("show-all")
     
                 if (isExpanded) {
