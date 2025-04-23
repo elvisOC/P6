@@ -162,6 +162,7 @@ and (min-width: 1025px){
         align-items: center;
         justify-content: center;
         border: 6px solid black;
+        overflow-y: auto;
     }
 
     .custom-modal-content{
@@ -171,9 +172,11 @@ and (min-width: 1025px){
         height: auto;
         position: relative;
         display: grid;
-        grid-template-columns: repeat(5);
+        grid-template-columns: repeat(5, 1fr);
         grid-template-rows: repeat(7);
         gap: 8px;
+        overflow-y: auto;
+        max-height: 100vh;
     }
 
     .custom-modal-header{
@@ -181,6 +184,10 @@ and (min-width: 1025px){
         grid-row: span 3 / span 3;
         align-items: center;
         gap: 20px;
+    }
+
+    .directors {
+        align-self: end;
     }
 
     .custom-modal-image {
