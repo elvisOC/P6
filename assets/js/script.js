@@ -437,8 +437,8 @@ function secondCategory(){
                         document.getElementById(`second-category-${i}-fourth-line`).textContent = `Recettes au box-office : ${movieDataIMDB.BoxOffice}`
                         document.getElementById(`second-category-${i}-fifth-line`).textContent = movie.directors
                         //document.getElementById(`second-category-${i}-modal-pegi`).textContent = movie.genres
-                        document.getElementById(`second-category-${i}-modal-actors`).textContent = `Acteurs : ${movie.actors}`
-                        document.getElementById(`second-category-${i}-modal-resume`).textContent = `Resumé : ${movieDataIMDB.Plot}`
+                        document.getElementById(`second-category-${i}-modal-actors`).textContent = movie.actors
+                        document.getElementById(`second-category-${i}-modal-resume`).textContent = movieDataIMDB.Plot
                     } else {
                         console.warn(`Aucune donnée pour le film ${i}`)
                     }
@@ -601,8 +601,8 @@ function addCategoriesToSelect(categories) {
                                 document.getElementById(`others-category-${i}-fourth-line`).textContent = `Recettes au box-office : ${movieDataIMDB.BoxOffice}`
                                 document.getElementById(`others-category-${i}-fifth-line`).textContent = movie.directors
                                 //document.getElementById(`others-category-${i}-modal-pegi`).textContent = movie.genres
-                                document.getElementById(`others-category-${i}-modal-actors`).textContent = `Acteurs : ${movie.actors}`
-                                document.getElementById(`others-category-${i}-modal-resume`).textContent = `Resumé : ${movieDataIMDB.Plot}`
+                                document.getElementById(`others-category-${i}-modal-actors`).textContent = movie.actors
+                                document.getElementById(`others-category-${i}-modal-resume`).textContent = movieDataIMDB.Plot
                             } else {
                                 console.warn(`Aucune donnée pour le film ${i}`)
                             }
