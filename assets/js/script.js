@@ -14,26 +14,34 @@ async function bestMovie(page){
         }
         const data = await r.json()
         movie = movie.concat(data.results)
+        
     }
     return movie
 }
 
-async function getMovie(categorie, page) {
+async function getMovie(categorie, page){
     let movies = []
-
-    for (let i = 1; i <= page; i++){
+    let i = 1
+    let hasNext = true
+    while(hasNext && i <= page){
         let url = `http://127.0.0.1:8000/api/v1/titles/?genre=${categorie}&page=${i}&sort_by=-imdb_score`
         const r = await fetch(url, {
-            method: "GET",
+            method: "Get",
             headers: {
                 "Accept": "application/json"
             }
         })
         if (!r.ok) {
-            throw new Error("Impossible de se connecter au serveur")
+            throw new Error('Impossible de se connecter au serveur')
         }
         const data = await r.json()
         movies = movies.concat(data.results)
+
+        if(!data.next){
+            hasNext = false
+        } else {
+            i++
+        }
     }
     return movies
 }
@@ -503,56 +511,57 @@ async function getAllCategories() {
     addCategoriesToSelect(categories)
 }
 
-function othersCategory(){
-    document.addEventListener("DOMContentLoaded", function(){
-        const container = document.getElementById("category-info")
-        for (let i = 0; i <= 5; i++){
-            let modalHTML = `
-                    <div class="col mt-5">
-                        <div class="image-container">
-                            <img id="others-category-${i}-img" src="" alt="" class="home-img">
-                            <div class="overlay">
-                                <h3 id="others-category-${i}-overlay-title" class="overlay-title"><h3>
-                                <button id="others-category-overlay-btn-${i}" class="overlay-btn">Détails</button>
+async function othersCategory(category, page) {
+    const container = document.getElementById("category-info")
+    container.innerHTML = ""
+
+    const movies = await getMovie(category, page)
+    const nbrElement = movies.length
+    const maxItems = Math.min(6, nbrElement)
+
+    for (let i = 0; i < maxItems; i++) {
+        let modalHTML = `
+            <div class="col mt-5">
+                <div class="image-container">
+                    <img id="others-category-${i}-img" src="" alt="" class="home-img">
+                    <div class="overlay">
+                        <h3 id="others-category-${i}-overlay-title" class="overlay-title"></h3>
+                        <button id="others-category-overlay-btn-${i}" class="overlay-btn">Détails</button>
+                    </div>
+                    <div id="others-category-modal-container"></div>
+                    <div id="others-category-${i}-modal" class="modal">
+                        <div id="others-category-${i}-modal-content" class="custom-modal-content">
+                            <div class="custom-modal-header">
+                                <div class="custom-modal-close" id="custom-modal-close-${i}">&times;</div>
+                                <h2 id="others-category-${i}-modal-title" class="custom-modal-title"></h2>
+                                <p id="others-category-${i}-first-line" class="custom-modal-info"></p>
+                                <p id="others-category-${i}-second-line" class="custom-modal-info"></p>
+                                <p id="others-category-${i}-third-line" class="custom-modal-info"></p>
+                                <p id="others-category-${i}-fourth-line" class="custom-modal-info"></p>
+                                <p><br></p>
+                                <p class="directors">Réalisé par :</p>
+                                <p id="others-category-${i}-fifth-line" class="directors-list"></p>
                             </div>
-                            <div id="others-category-modal-container"></div>
-                                <div id="others-category-${i}-modal" class="modal">
-                                    <div id="others-category-${i}-modal-content" class="custom-modal-content">
-                                        <div class="custom-modal-header">
-                                            <div class="custom-modal-close" id="custom-modal-close-${i}">&times;</div>
-                                            <h2 id="others-category-${i}-modal-title" class="custom-modal-title"></h2>
-                                            <p id="others-category-${i}-first-line" class="custom-modal-info"></p>
-                                            <p id="others-category-${i}-second-line" class="custom-modal-info"></p>
-                                            <p id="others-category-${i}-third-line" class="custom-modal-info"></p>
-                                            <p id="others-category-${i}-fourth-line" class="custom-modal-info"></p>
-                                            <p><br></p>
-                                            <p class="directors ">Réalisé par :</p>
-                                            <p id="others-category-${i}-fifth-line" class="directors-list"></p>
-                                        </div>
-                                        <div class="custom-modal-image">
-                                            <img id="others-category-${i}-modal-img" src="" class="modal-img">
-                                        </div>
-                                        <div class="custom-modal-resume">
-                                            <p id="others-category-${i}-modal-resume"></p>
-                                        </div>
-                                        <div class="custom-modal-actors">
-                                            <p class="with">Avec:</p>
-                                            <p id="others-category-${i}-modal-actors" class="actors-list"></p>
-                                        </div>
-                                        <div class="custom-modal-footer">
-                                            <button id ="others-category-${i}-modal-close" class="close">Fermer</button>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="custom-modal-image">
+                                <img id="others-category-${i}-modal-img" src="" class="modal-img">
+                            </div>
+                            <div class="custom-modal-resume">
+                                <p id="others-category-${i}-modal-resume"></p>
+                            </div>
+                            <div class="custom-modal-actors">
+                                <p class="with">Avec:</p>
+                                <p id="others-category-${i}-modal-actors" class="actors-list"></p>
+                            </div>
+                            <div class="custom-modal-footer">
+                                <button id="others-category-${i}-modal-close" class="close">Fermer</button>
                             </div>
                         </div>
-                    </div>`
-                container.insertAdjacentHTML("beforeend", modalHTML)
-            }
-        }
-    )
+                    </div>
+                </div>
+            </div>`;
+        container.insertAdjacentHTML("beforeend", modalHTML)
+    }
 }
-othersCategory()
 
 function addCategoriesToSelect(categories) {
     const select = document.getElementById("autres-select-1")
@@ -568,6 +577,7 @@ function addCategoriesToSelect(categories) {
         let category = selectedCategory.name
         document.getElementById("category-info").style.display = "flex"
         document.getElementById("toggleButton-select-1").style.display = "inline-block"
+        othersCategory(category, 2)
         for(let i = 0; i <= 5; i++) {
             let movieData = await getMovie(category, 2)
             let movie = movieData[i]
