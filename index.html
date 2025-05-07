@@ -18,54 +18,56 @@
     </head>
     <body>
         <div class="container">
-            <div class="jumbotron bg-secondary text-white mt-3 p-2 border border-dark" id="nav-bar">
+            <div class="jumbotron text-white mt-3 p-2 border border-dark" id="nav-bar">
                 <div>
                     <img src="./assets/img/logo.png" id="logo" alt="">
                     <h1 class="d-inline text-center" id="catchword">Vidéos a la demande</h1>
                 </div>
             </div>
         </div>
-        <div class="container mt-5">
+        <div class="container">
             <h1><b>Meilleur Film</b></h1>
-            <div class="card flex-row mt-5 p-3 border-5 border-dark">
-                <img id="best-movie-img" class="card-img-top img-fluid" src="" style="width: 18em;" alt="Card image cap"/>
-                <div class="card-body">
-                    <p id="best-movie-title" class="card-title h1 h4-sm"></p>
-                    <p  id="best-movie-resume" class="card-text"></p>
-                    <div class="text-end">
-                        <div>
-                            <button id="best-movie-btn-details" type="button" class="btn btn-custom" data-toggle="modal" data-target="#bestMovieModal">
-                                Détails
-                            </button>
-                        </div>
-                        <div id="best-movie-modal" class="modal">
-                            <div id="best-movie-modal-content" class="custom-modal-content">
-                                <div class="custom-modal-header">
-                                    <div class="custom-modal-close" id="custom-modal-close">&times;</div>
-                                    <h2 id="best-movie-modal-title" class="custom-modal-title"><br></h2>
-                                    <p id="best-movie-first-line" class="custom-modal-info"></p>
-                                    <p id="best-movie-second-line" class="custom-modal-info"></p>
-                                    <p id="best-movie-third-line" class="custom-modal-info"></p>
-                                    <p id="best-movie-fourth-line" class="custom-modal-info"></p>
-                                    <p><br></p>
-                                    <p class="directors ">Réalisé par :</p>
-                                    <p id="best-movie-fifth-line" class="directors-list"><br></p>
-                                </div>
-                                <div class="custom-modal-image">
-                                    <img id="best-movie-modal-img" src="" class="modal-img">
-                                </div>
-                                <div class="custom-modal-resume">
-                                    <p id="best-movie-modal-resume"></p>
-                                </div>
-                                <div class="custom-modal-actors">
-                                    <p class="with">Avec:</p>
-                                    <p id="best-movie-modal-actors" class="actors-list"></p>
-                                </div>
-                                <div class="custom-modal-footer">
-                                    <button id ="best-movie-modal-close" class="close">Fermer</button>
-                                </div>
-                            </div>
-                        </div>
+            <div class="best-movie-card">
+                <div class="best-movie-image-container">
+                    <img id="best-movie-img" src="" alt="Affiche du film" />
+                </div>
+                <div class="content">
+                    <div class="text-content">
+                        <h2 id="best-movie-title"></h2>
+                        <p id="best-movie-resume"></p>
+                    </div>
+                    <div class="button-container">
+                        <button id="best-movie-btn-details" type="button" class="btn-custom" data-toggle="modal" data-target="#bestMovieModal">
+                            Détails
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="best-movie-modal" class="modal">
+                <div id="best-movie-modal-content" class="custom-modal-content">
+                    <div class="custom-modal-header">
+                        <div class="custom-modal-close" id="custom-modal-close">&times;</div>
+                        <h2 id="best-movie-modal-title" class="custom-modal-title"><br></h2>
+                        <p id="best-movie-first-line" class="custom-modal-info"></p>
+                        <p id="best-movie-second-line" class="custom-modal-info"></p>
+                        <p id="best-movie-third-line" class="custom-modal-info"></p>
+                        <p id="best-movie-fourth-line" class="custom-modal-info"></p>
+                        <p><br></p>
+                        <p class="directors ">Réalisé par :</p>
+                        <p id="best-movie-fifth-line" class="directors-list"><br></p>
+                    </div>
+                    <div class="custom-modal-image">
+                        <img id="best-movie-modal-img" src="" class="modal-img">
+                    </div>
+                    <div class="custom-modal-resume">
+                        <p id="best-movie-modal-resume"></p>
+                    </div>
+                    <div class="custom-modal-actors">
+                        <p class="with">Avec:</p>
+                        <p id="best-movie-modal-actors" class="actors-list"></p>
+                    </div>
+                    <div class="custom-modal-footer">
+                        <button id ="best-movie-modal-close" class="close">Fermer</button>
                     </div>
                 </div>
             </div>

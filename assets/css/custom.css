@@ -1,79 +1,290 @@
-/*Nav-bar*/
-/* For Mobile */
-@media screen
-and (max-width: 768px){
-    #logo{
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
-        align-items: center;
-    }
-    #catchword{
-        visibility: hidden;
-    }
+/* Variables */
+:root {
+    --primary-red: #FA0B0B;
+    --dark-gray: #2D2C2C;
+    --black: #000000;
+
+    --font-main: "Oswald", sans-serif;
+
+    --font-size-xl: 48px;
+    --font-size-lg: 24px;
+    --font-size-md: 16px;
+    --font-size-sm: 14px;
 }
 
-
-
-@media screen 
-and (min-width: 769px)
-and (max-width: 1024px) {
-    #nav-bar{
-        display: flex;
-        align-items: center;
-        padding: 10px;
-    }
-    #logo{
-        width: 165px;
-    }
-    #catchword{
-        font-size: 40px;
-        font-family: "Oswald", sans-serif;
-    }
+/* Général */
+.custom-modal-header,
+.custom-modal-resume,
+.custom-modal-actors,
+#best-movie-title,
+.overlay-btn,
+.overlay-title,
+#catchword {
+    font-family: var(--font-main);
+    text-align: start;
 }
 
-/*Fin nav-bar*/
+.custom-modal-resume {
+    font-weight: 300;
+    font-size: var(--font-size-lg);
+}
 
+.with,
+.directors {
+    font-size: var(--font-size-lg);
+    font-weight: 400;
+}
 
-/*6 films*/
+.actors-list,
+.directors-list {
+    font-size: var(--font-size-lg);
+    font-weight: 300;
+}
 
-/* Tablettes : 4 éléments visibles */
-@media screen 
-and (min-width: 769px)
-and (max-width: 1024px) {
-    .col {
-        width: calc(50% - 10px); 
-    }
+.custom-modal-title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+}
+
+.custom-modal-info {
+    font-size: var(--font-size-lg);
+    line-height: 20px;
+    font-weight: 600;
+}
+
+.jumbotron {
+    background-color: #61787F;
+}
+
+#logo {
+    width: 240px;
+}
+
+#catchword {
+    margin-left: 32px;
+}
+
+#best-movie-title {
+    font-size: var(--font-size-xl);
+}
+
+.home-img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    height: 30%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 18px;
+}
+
+.overlay-btn {
+    background-color: var(--dark-gray);
+    border-radius: 25px;
+    width: 81px;
+    height: 25px;
+    color: white;
+    font-weight: 500;
+    position: absolute;
+    top: 70%;
+    right: 2em;
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    text-align: center;
+}
+
+.overlay-title {
+    vertical-align: middle;
+    font-size: var(--font-size-lg);
+    text-align: left;
+    padding-left: 5%;
+}
+
+.toggleButton,
+.close,
+#best-movie-btn-details {
+    background-color: var(--primary-red);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.toggleButton {
+    padding: 2px 4px;
+    font-size: var(--font-size-md);
+    width: 214px;
+    height: 36px;
+    position: absolute;
+}
+
+.close {
+    font-size: var(--font-size-md);
+    width: 214px;
+    height: 36px;
+    text-align: center;
+}
+
+#best-movie-btn-details {
+    width: 158px;
+    height: 64px;
+    font-weight: 500;
+    font-size: var(--font-size-lg);
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+#category-info {
+    display: none;
+}
+
+.maintxt {
+    position: relative;
+}
+.maintxt > img,
+.overlay-text {
+    position: absolute;
+}
+
+/* PC */
+@media screen and (min-width: 1025px) {
     .show-more {
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
+        display: none;
     }
+
+    .best-movie-card,
+    .content {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .best-movie-card {
+        border: 4px solid var(--black);
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+    .content {
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
+
+    #best-movie-title {
+        font-size: 1.5rem;
+    }
+
+    .modal {
+        display: none;  
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        width: 778px;
+        height: auto;
+        background-color: rgba(0, 0, 0, 0.5); 
+        align-items: center;
+        justify-content: center;
+        border: 6px solid black;
+        overflow-y: auto;
+    }
+
+    .custom-modal-content {
+        background: white;
+        padding: 20px;
+        width: 850px;
+        height: auto;
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(7);
+        gap: 8px;
+        overflow-y: auto;
+        max-height: 100vh;
+    }
+
+    .custom-modal-header {
+        grid-column: span 3;
+        grid-row: span 3;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .custom-modal-image {
+        grid-column: 4 / span 2;
+        grid-row: span 3;
+        justify-self: end;
+    }
+
+    .modal-img {
+        width: 227px;
+        height: 334px;
+    }
+
+    .custom-modal-resume {
+        grid-column: span 5;
+        grid-row-start: 4;
+        grid-row-end: span 2;
+    }
+
+    .custom-modal-actors {
+        grid-column: span 5;
+        grid-row-start: 6;
+    }
+
+    .custom-modal-footer {
+        grid-column-start: 3;
+        grid-row-start: 7;
+        align-self: end;
+    }
+
+    .custom-modal-close {
+        display: none;
+    }
+}
+
+/* Tablettes*/
+@media screen and (max-width: 1024px) {
     .container:not(.show-all) .col:nth-child(n+5) {
         display: none;
     }
-}
-
-
-/* Téléphone : 2 éléments visibles */
-@media screen 
-and (max-width: 768px)
-and (orientation: portrait){
-    .container:not(.show-all) .col:nth-child(n+3) {
-        display: none;
-    }
     .show-more {
         display: flex;
         justify-content: center;
         margin-top: 10px;
     }
+    .best-movie-card,
+    .content {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+    .best-movie-card {
+        border: 4px solid var(--black);
+        padding: 20px;
+        margin: 0 auto;
+    }
 
-}
-
-/*Modal tablettes et téléphones*/
-@media screen 
-and (max-width: 1024px){
     .modal {
         display: none;
         flex-direction: column;
@@ -84,6 +295,7 @@ and (max-width: 1024px){
         overflow-y: auto;
         max-height: 100vh;
     }
+
     .custom-modal-content {
         background: white;
         padding: 20px;
@@ -103,28 +315,27 @@ and (max-width: 1024px){
     }
 
     .custom-modal-header {
-        grid-row: span 3 / span 3;
+        grid-row: span 3;
     }
 
     .custom-modal-resume {
-        grid-row: span 3 / span 3;
-        grid-column-start: 1;
         grid-row-start: 4;
-    }
-
-    .custom-modal-actors {
-        grid-row: span 2 / span 2;
-        grid-row-start: 10;
+        grid-row-end: span 3;
     }
 
     .custom-modal-image {
-        grid-row: span 3 / span 3;
-        grid-column-start: 1;
         grid-row-start: 7;
+        grid-row-end: span 3;
     }
+
     .modal-img {
         margin-top: 20px;
         width: 100%;
+    }
+
+    .custom-modal-actors {
+        grid-row-start: 10;
+        grid-row-end: span 2;
     }
 
     .custom-modal-close {
@@ -136,261 +347,97 @@ and (max-width: 1024px){
         color: red;
         cursor: pointer;
         display: block;
-        width: 32px;
-        height: 32px;
     }
-    .close {
-        display: none;
-    }
-}
-
-@media screen 
-and (min-width: 1025px){
-    .show-more{
-        display: none;
-    }
-    .modal {
-        display: none;  
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1000;
-        width: 778px;
-        height: auto;
-        background-color: rgba(0, 0, 0, 0.5); 
-        align-items: center;
-        justify-content: center;
-        border: 6px solid black;
-        overflow-y: auto;
-    }
-
-    .custom-modal-content{
-        background: white;
-        padding: 20px;
-        width: 850px;
-        height: auto;
+    .button-container {
         position: relative;
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: repeat(7);
-        gap: 8px;
-        overflow-y: auto;
-        max-height: 100vh;
     }
-
-    .custom-modal-header{
-        grid-column: span 3 / span 3;
-        grid-row: span 3 / span 3;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .directors {
-        align-self: end;
-    }
-
-    .custom-modal-image {
-        grid-column: span 2 / span 2;
-        grid-row: span 3 / span 3;
-        grid-column-start: 4;
-        justify-self: end;
-    }
-
-    .modal-img {
-        width: 227px;
-        height: 334px;
-    }
-
-    .custom-modal-resume {
-        grid-column: span 5 / span 5;
-        grid-row: span 2 / span 2;
-        grid-row-start: 4;
-    }
-
-    .custom-modal-actors {
-        grid-column: span 5 / span 5;
-        grid-row-start: 6;
-    }
-
-    .custom-modal-footer {
-        grid-column-start: 3;
-        grid-row-start: 7;
-        align-self: end;
-    }
-
-    .custom-modal-close {
-        display: none;
+    #best-movie-btn-details {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        border-color: #FA0B0B;
+        background-color: #FA0B0B ;
+        border-radius: 25px;
+        width: 123px;
+        height: 49px;
+        color: white;
+        font-weight: 500;
+        font-size: 20px;
     }
 
     .close {
-        background-color: #FA0B0B;
-        color: white;
-        padding: 2px 4px 2px 4px;
-        border: none;
-        border-radius: 25px;
-        cursor: pointer;
-        font-size: 16px;
-        width: 214px;
-        height: 36px;
-        text-align: center;
+        display: none;
     }
 }
+/* Téléphones */
+@media screen and (max-width: 768px) {
+    #logo {
+        display: block;
+        margin: 0 auto;
+        width: 50%;
+    }
 
+    #catchword {
+        visibility: hidden;
+    }
 
-/*Général*/
-.custom-modal-header {
-    font-family: "Oswald", sans-serif;
-    text-align: start;
+    .container:not(.show-all) .col:nth-child(n+3) {
+        display: none;
+    }
+
+    .show-more {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .best-movie-container,
+    .container {
+        justify-items: center;
+    }
+
+    .col {
+        display: flex;
+        justify-content: center;
+    }
+
+    .best-movie-card {
+        border: 4px solid var(--black);
+        flex-direction: column;
+        align-items: start;
+        padding: 10px;
+        width: 400px;
+    }
+
+    .best-movie-image-container,
+    .best-movie-image-container img {
+        width: 100%;
+        height: 241px;
+        object-fit: cover;
+        object-position: center;
+    }
+    .content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .text-content {
+        text-align: start;
+    }
+
+    .button-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    #best-movie-btn-details {
+        position: static;
+        width: 91px;
+        height: 40px;
+        font-size: var(--font-size-sm);
+    }
 }
-
-.custom-modal-resume {
-    font-family: "Oswald", sans-serif;
-    text-align: start;
-    font-weight: 300;
-    font-size: 24px;
-}
-
-.custom-modal-actors {
-    font-family: "Oswald", sans-serif;
-    text-align: start;
-}
-
-.with {
-    font-size: 24px;
-    font-weight: 400;
-}
-
-.actors-list {
-    font-size: 24px;
-    font-weight: 300;
-}
-
-.custom-modal-title {
-    font-size: 48px;
-    font-weight: 600;
-}
-
-.custom-modal-info {
-    font-size: 24px;
-    line-height: 20px;
-    font-weight: 600;
-}
-
-.directors {
-    font-size: 24px;
-    font-weight: 400;
-}
-
-.directors-list {
-    font-size: 24px;
-    font-weight: 300;
-}
-
-
-#logo {
-    width: 15em;
-}
-#catchword{
-    margin-left: 2em;
-}
-
-
-#best-movie-title{
-    font-family: "Oswald", sans-serif;
-    font-size: 48px;
-}
-
-.row{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.col {
-    width: 100%;
-}
-
-.home-img{
-    width: 400px;
-    height: 400px;
-    object-fit: cover;
-    object-position: center;
-}
-
-.overlay {
-    position: absolute;
-    top: 50px;
-    width: 100%;
-    height: 30%;
-    background: rgba(0, 0, 0, 0.6); 
-    color: white;
-    text-align: center;
-    padding: 30px 0;
-    font-size: 18px;
-}
-
-.overlay-btn {
-    border-color: #2D2C2C;
-    background-color: #2D2C2C ;
-    border-radius: 25px;
-    width: 81px;
-    height: 25px;
-    color: white;
-    font-weight: 500;
-    position: absolute;
-    top: 70%;
-    right: 2em;
-    font-size: 14px;
-    font-family: "Oswald", sans-serif;
-    cursor: pointer;
-}
-
-.overlay-title {
-    vertical-align: middle;
-    font-size: 24px;
-    text-align: left;
-    padding-left: 5%;
-    font-family: "Oswald", sans-serif;
-}
-/*Best movie style*/
-#best-movie-btn-details {
-    align-items: end;
-    border-color: #FA0B0B;
-    background-color: #FA0B0B ;
-    border-radius: 25px;
-    width: 158px;
-    height: 64px;
-    color: white;
-    font-weight: 500;
-    font-size: 24px;
-    position: absolute;
-    bottom: 2em;
-    right: 2em;
-}
-
-
-.toggleButton{
-    background-color: #FA0B0B;
-    color: white;
-    padding: 2px 4px 2px 4px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 214px;
-    height: 36px;
-    position: absolute;
-}
-
-.image-container {
-    position: relative;
-    display: inline-block;
-}
-
-#category-info {
-    display: none;
-}
-
-.maintxt {position: relative;}
-.maintxt > img, .overlay-text {position: absolute;}

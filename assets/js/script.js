@@ -93,7 +93,7 @@ function firstBestMovie(){
         document.getElementById("best-movie-modal-img").src = movie.image_url
         document.getElementById("best-movie-modal-title").textContent = movie.title
         document.getElementById("best-movie-first-line").textContent = `${movie.year} - ${movie.genres} `
-        document.getElementById("best-movie-second-line").textContent = movieDataIMDB.Runtime, movieDataIMDB.Country
+        document.getElementById("best-movie-second-line").textContent = `${movieDataIMDB.Runtime} (${movieDataIMDB.Country})`
         document.getElementById("best-movie-third-line").textContent = `IMDB score : ${movie.imdb_score}/10`
         document.getElementById("best-movie-fourth-line").textContent = `Recettes au box-office : ${movieDataIMDB.BoxOffice}`
         document.getElementById("best-movie-fifth-line").textContent = movie.directors
@@ -121,9 +121,8 @@ firstBestMovie()
 //Best movie 1-6 category
 function bestMovieCategory() {
     document.addEventListener("DOMContentLoaded", async function () {
-    
+        let movieData = await bestMovie(2)
         for (let i = 1; i <= 6; i++) {
-            let movieData = await bestMovie(2)
             let movie = movieData[i]
             let idPrefix = "tt0"
             let id = movie.id
@@ -135,7 +134,7 @@ function bestMovieCategory() {
                 <div class="image-container">
                     <img id="best-movie-${i}-img" src="" alt="" class="home-img">
                     <div class="overlay">
-                        <h3 id="best-movie-${i}-overlay-title" class="overlay-title"><h3>
+                        <h3 id="best-movie-${i}-overlay-title" class="overlay-title"></h3>
                         <button id="best-movie-overlay-btn-${i}" class="overlay-btn">Détails</button>
                     </div>
                     <div id="best-movie-${i}-modal" class="modal">
@@ -192,12 +191,12 @@ function bestMovieCategory() {
                         document.getElementById(`best-movie-${i}-modal-img`).src = movie.image_url
                         document.getElementById(`best-movie-${i}-modal-title`).textContent = movie.title
                         document.getElementById(`best-movie-${i}-first-line`).textContent = `${movie.year} - ${movie.genres} `
-                        document.getElementById(`best-movie-${i}-second-line`).textContent = movieDataIMDB.Runtime, movieDataIMDB.Country
+                        document.getElementById(`best-movie-${i}-second-line`).textContent = `${movieDataIMDB.Runtime} (${movieDataIMDB.Country})`
                         document.getElementById(`best-movie-${i}-third-line`).textContent = `IMDB score : ${movie.imdb_score}/10`
                         document.getElementById(`best-movie-${i}-fourth-line`).textContent = `Recettes au box-office : ${movieDataIMDB.BoxOffice}`
                         document.getElementById(`best-movie-${i}-fifth-line`).textContent = movie.directors
                         //document.getElementById(`best-movie-${i}-modal-pegi`).textContent = movie.genres
-                        document.getElementById(`best-movie-${i}-modal-actors`).textContent = `Acteurs : ${movie.actors}`
+                        document.getElementById(`best-movie-${i}-modal-actors`).textContent = `${movie.actors}`
                         document.getElementById(`best-movie-${i}-modal-resume`).textContent = `Resumé : ${movieDataIMDB.Plot}`
                     } else {
                         console.warn(`Aucune donnée pour le film ${i}`)
@@ -244,9 +243,8 @@ bestMovieCategory()
 function firstCategory() {
     document.addEventListener("DOMContentLoaded", async function () {
         let container = document.getElementById("row-first-category")
-    
+        let movieData = await getMovie("Sci-Fi", 2)
         for (let i = 1; i <= 6; i++) {
-            let movieData = await getMovie("Sci-Fi", 2)
             let movie = movieData[i - 1]
             let idPrefix = "tt0"
             let id = movie.id
@@ -257,7 +255,7 @@ function firstCategory() {
                     <div class="image-container">
                         <img id="first-category-${i}-img" src="" alt="" class="home-img"> 
                         <div class="overlay">
-                            <h3 id="first-category-${i}-overlay-title" class="overlay-title"><h3>
+                            <h3 id="first-category-${i}-overlay-title" class="overlay-title"></h3>
                             <button id="first-category-overlay-btn-${i}" class="overlay-btn">Détails</button>
                         </div>
                             <div id="first-category-${i}-modal" class="modal">
@@ -315,7 +313,7 @@ function firstCategory() {
                         document.getElementById(`first-category-${i}-modal-img`).src = movie.image_url
                         document.getElementById(`first-category-${i}-modal-title`).textContent = movie.title
                         document.getElementById(`first-category-${i}-first-line`).textContent = `${movie.year} - ${movie.genres} `
-                        document.getElementById(`first-category-${i}-second-line`).textContent = movieDataIMDB.Runtime, movieDataIMDB.Country
+                        document.getElementById(`first-category-${i}-second-line`).textContent = `${movieDataIMDB.Runtime} (${movieDataIMDB.Country})`
                         document.getElementById(`first-category-${i}-third-line`).textContent = `IMDB score : ${movie.imdb_score}/10`
                         document.getElementById(`first-category-${i}-fourth-line`).textContent = `Recettes au box-office : ${movieDataIMDB.BoxOffice}`
                         document.getElementById(`first-category-${i}-fifth-line`).textContent = movie.directors
@@ -364,9 +362,8 @@ firstCategory()
 function secondCategory(){
     document.addEventListener("DOMContentLoaded", async function () {
         let container = document.getElementById("row-second-category")
-    
+        let movieData = await getMovie("Action", 2)
         for (let i = 1; i <= 6; i++) {
-            let movieData = await getMovie("Action", 2)
             let movie = movieData[i - 1]
             let idPrefix = "tt0"
             let id = movie.id
@@ -377,7 +374,7 @@ function secondCategory(){
                 <div class="image-container">
                     <img id="second-category-${i}-img" src="" alt="" class="home-img"> 
                     <div class="overlay">
-                            <h3 id="second-category-${i}-overlay-title" class="overlay-title"><h3>
+                            <h3 id="second-category-${i}-overlay-title" class="overlay-title"></h3>
                             <button id="second-category-overlay-btn-${i}" class="overlay-btn">Détails</button>
                         </div>
                         <div id="second-category-${i}-modal" class="modal">
@@ -440,7 +437,7 @@ function secondCategory(){
                         }
                         document.getElementById(`second-category-${i}-modal-title`).textContent = movie.title
                         document.getElementById(`second-category-${i}-first-line`).textContent = `${movie.year} - ${movie.genres} `
-                        document.getElementById(`second-category-${i}-second-line`).textContent = movieDataIMDB.Runtime, movieDataIMDB.Country
+                        document.getElementById(`second-category-${i}-second-line`).textContent = `${movieDataIMDB.Runtime} (${movieDataIMDB.Country})`
                         document.getElementById(`second-category-${i}-third-line`).textContent = `IMDB score : ${movie.imdb_score}/10`
                         document.getElementById(`second-category-${i}-fourth-line`).textContent = `Recettes au box-office : ${movieDataIMDB.BoxOffice}`
                         document.getElementById(`second-category-${i}-fifth-line`).textContent = movie.directors
@@ -578,8 +575,8 @@ function addCategoriesToSelect(categories) {
         document.getElementById("category-info").style.display = "flex"
         document.getElementById("toggleButton-select-1").style.display = "inline-block"
         othersCategory(category, 2)
+        let movieData = await getMovie(category, 2)
         for(let i = 0; i <= 5; i++) {
-            let movieData = await getMovie(category, 2)
             let movie = movieData[i]
             try {
                 let response = await fetch(movie.image_url)
@@ -606,7 +603,7 @@ function addCategoriesToSelect(categories) {
                                 document.getElementById(`others-category-${i}-modal-img`).src = movie.image_url
                                 document.getElementById(`others-category-${i}-modal-title`).textContent = movie.title
                                 document.getElementById(`others-category-${i}-first-line`).textContent = `${movie.year} - ${movie.genres} `
-                                document.getElementById(`others-category-${i}-second-line`).textContent = movieDataIMDB.Runtime, movieDataIMDB.Country
+                                document.getElementById(`others-category-${i}-second-line`).textContent = `${movieDataIMDB.Runtime} (${movieDataIMDB.Country})`
                                 document.getElementById(`others-category-${i}-third-line`).textContent = `IMDB score : ${movie.imdb_score}/10`
                                 document.getElementById(`others-category-${i}-fourth-line`).textContent = `Recettes au box-office : ${movieDataIMDB.BoxOffice}`
                                 document.getElementById(`others-category-${i}-fifth-line`).textContent = movie.directors
