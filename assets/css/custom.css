@@ -7,12 +7,13 @@
     --font-main: "Oswald", sans-serif;
 
     --font-size-xl: 48px;
-    --font-size-lg: 24px;
+    --font-size-lg: 20px;
     --font-size-md: 16px;
     --font-size-sm: 14px;
 }
 
 /* Général */
+.others,
 .custom-modal-header,
 .custom-modal-resume,
 .custom-modal-actors,
@@ -28,7 +29,7 @@
     font-weight: 300;
     font-size: var(--font-size-lg);
 }
-
+.others,
 .with,
 .directors {
     font-size: var(--font-size-lg);
@@ -217,7 +218,7 @@
         position: relative;
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: repeat(7);
+        grid-template-rows: repeat(7, 1fr);
         gap: 8px;
         overflow-y: auto;
         max-height: 100vh;
@@ -312,8 +313,8 @@
         max-height: 100vh;
         border: 6px solid black;
         display: grid;
-        grid-template-columns: repeat(1);
-        grid-template-rows: repeat(11);
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(11, 1fr);
         gap: 8px;
     }
 

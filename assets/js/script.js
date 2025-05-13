@@ -74,6 +74,76 @@ async function acceuilBestMovie() {
 acceuilBestMovie()
 
 
+function html(name, i){
+    let html =  `
+    <div class="col mt-5">
+        <div class="image-container">
+            <img id="${name}-${i}-img"  alt="Affiche du film" class="home-img">
+            <div class="overlay">
+                <h3 id="${name}-${i}-overlay-title" class="overlay-title"></h3>
+                <button id="${name}-overlay-btn-${i}" class="overlay-btn">Détails</button>
+            </div>
+            <div id="${name}-${i}-modal" class="modal">
+                <div id="${name}-${i}-modal-content" class="custom-modal-content">
+                    <div class="custom-modal-header">
+                        <div class="custom-modal-close" id="custom-modal-close-${i}">&times;</div>
+                        <h2 id="${name}-${i}-modal-title" class="custom-modal-title"></h2>
+                        <p id="${name}-${i}-first-line" class="custom-modal-info"></p>
+                        <p id="${name}-${i}-second-line" class="custom-modal-info"></p>
+                        <p id="${name}-${i}-third-line" class="custom-modal-info"></p>
+                        <p id="${name}-${i}-fourth-line" class="custom-modal-info"></p>
+                        <p><br></p>
+                        <p class="directors ">Réalisé par :</p>
+                        <p id="${name}-${i}-fifth-line" class="directors-list"></p>
+                    </div>
+                    <div class="custom-modal-image">
+                        <img id="${name}-${i}-modal-img" alt="Affiche du film" class="modal-img">
+                    </div>
+                    <div class="custom-modal-resume">
+                        <p id="${name}-${i}-modal-resume"></p>
+                    </div>
+                    <div class="custom-modal-actors">
+                        <p class="with">Avec:</p>
+                        <p id="${name}-${i}-modal-actors" class="actors-list"></p>
+                    </div>
+                    <div class="custom-modal-footer">
+                        <button id ="${name}-${i}-modal-close" class="close">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`
+    return html
+}
+function htmlModal(prefix, index, movie, movieDataIMDB) {
+    const sep = index !== null && index !== "" ? `-${index}-` : `-`
+
+    const setText = (suffix, content) => {
+        const element = document.getElementById(`${prefix}${sep}${suffix}`)
+        if (element) element.textContent = content
+    }
+
+    const setImg = (suffix, src) => {
+        const element = document.getElementById(`${prefix}${sep}${suffix}`)
+        if (element) element.src = src
+    }
+
+    try {
+        setImg("modal-img", movie.image_url)
+    } catch (error) {
+        setImg("modal-img", "./assets/img/imgnotfound.png")
+    }
+
+    setText("modal-title", movie.title)
+    setText("first-line", `${movie.year} - ${movie.genres}`)
+    setText("second-line", `${movieDataIMDB.Runtime} (${movieDataIMDB.Country})`)
+    setText("third-line", `IMDB score : ${movie.imdb_score}/10`)
+    setText("fourth-line", `Recettes au box-office : ${movieDataIMDB.BoxOffice}`)
+    setText("fifth-line", movie.directors)
+    setText("modal-actors", movie.actors)
+    setText("modal-resume", `Resumé : ${movieDataIMDB.Plot}`)
+}
+
 //First Best Movie
 
 function firstBestMovie(){
@@ -90,16 +160,7 @@ function firstBestMovie(){
         let id = movie.id
         let imdbID = idPrefix + id
         let movieDataIMDB = await getDataIMDB(imdbID)
-        document.getElementById("best-movie-modal-img").src = movie.image_url
-        document.getElementById("best-movie-modal-title").textContent = movie.title
-        document.getElementById("best-movie-first-line").textContent = `${movie.year} - ${movie.genres} `
-        document.getElementById("best-movie-second-line").textContent = `${movieDataIMDB.Runtime} (${movieDataIMDB.Country})`
-        document.getElementById("best-movie-third-line").textContent = `IMDB score : ${movie.imdb_score}/10`
-        document.getElementById("best-movie-fourth-line").textContent = `Recettes au box-office : ${movieDataIMDB.BoxOffice}`
-        document.getElementById("best-movie-fifth-line").textContent = movie.directors
-        //document.getElementById("best-movie-modal-pegi").textContent = movie.genres
-        document.getElementById("best-movie-modal-actors").textContent = movie.actors
-        document.getElementById("best-movie-modal-resume").textContent = movieDataIMDB.Plot
+        htmlModal("best-movie", "", movie, movieDataIMDB)
     })
 
     bestMoviecloseBtn.addEventListener("click", function() {
@@ -129,44 +190,7 @@ function bestMovieCategory() {
             let imdbID = idPrefix + id
             let movieDataIMDB = await getDataIMDB(imdbID)
             let container = document.getElementById("row-best-movie")
-            let modalHTML = `
-            <div class="col mt-5">
-                <div class="image-container">
-                    <img id="best-movie-${i}-img" src="" alt="" class="home-img">
-                    <div class="overlay">
-                        <h3 id="best-movie-${i}-overlay-title" class="overlay-title"></h3>
-                        <button id="best-movie-overlay-btn-${i}" class="overlay-btn">Détails</button>
-                    </div>
-                    <div id="best-movie-${i}-modal" class="modal">
-                        <div id="best-movie-${i}-modal-content" class="custom-modal-content">
-                            <div class="custom-modal-header">
-                                <div class="custom-modal-close" id="custom-modal-close-${i}">&times;</div>
-                                <h2 id="best-movie-${i}-modal-title" class="custom-modal-title"></h2>
-                                <p id="best-movie-${i}-first-line" class="custom-modal-info"></p>
-                                <p id="best-movie-${i}-second-line" class="custom-modal-info"></p>
-                                <p id="best-movie-${i}-third-line" class="custom-modal-info"></p>
-                                <p id="best-movie-${i}-fourth-line" class="custom-modal-info"></p>
-                                <p><br></p>
-                                <p class="directors ">Réalisé par :</p>
-                                <p id="best-movie-${i}-fifth-line" class="directors-list"></p>
-                            </div>
-                            <div class="custom-modal-image">
-                                <img id="best-movie-${i}-modal-img" src="" class="modal-img">
-                            </div>
-                            <div class="custom-modal-resume">
-                                <p id="best-movie-${i}-modal-resume"></p>
-                            </div>
-                            <div class="custom-modal-actors">
-                                <p class="with">Avec:</p>
-                                <p id="best-movie-${i}-modal-actors" class="actors-list"></p>
-                            </div>
-                            <div class="custom-modal-footer">
-                                <button id ="best-movie-${i}-modal-close" class="close">Fermer</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>`
+            let modalHTML = html("best-movie", i)
 
             container.insertAdjacentHTML("beforeend", modalHTML)
             
@@ -188,16 +212,7 @@ function bestMovieCategory() {
                 detailBtn.addEventListener("click", async function() {
                     modal.style.display = "flex"
                     if(movie) {
-                        document.getElementById(`best-movie-${i}-modal-img`).src = movie.image_url
-                        document.getElementById(`best-movie-${i}-modal-title`).textContent = movie.title
-                        document.getElementById(`best-movie-${i}-first-line`).textContent = `${movie.year} - ${movie.genres} `
-                        document.getElementById(`best-movie-${i}-second-line`).textContent = `${movieDataIMDB.Runtime} (${movieDataIMDB.Country})`
-                        document.getElementById(`best-movie-${i}-third-line`).textContent = `IMDB score : ${movie.imdb_score}/10`
-                        document.getElementById(`best-movie-${i}-fourth-line`).textContent = `Recettes au box-office : ${movieDataIMDB.BoxOffice}`
-                        document.getElementById(`best-movie-${i}-fifth-line`).textContent = movie.directors
-                        //document.getElementById(`best-movie-${i}-modal-pegi`).textContent = movie.genres
-                        document.getElementById(`best-movie-${i}-modal-actors`).textContent = `${movie.actors}`
-                        document.getElementById(`best-movie-${i}-modal-resume`).textContent = `Resumé : ${movieDataIMDB.Plot}`
+                        htmlModal("best-movie", i, movie, movieDataIMDB)
                     } else {
                         console.warn(`Aucune donnée pour le film ${i}`)
                     }
@@ -250,45 +265,7 @@ function firstCategory() {
             let id = movie.id
             let imdbID = idPrefix + id
             let movieDataIMDB = await getDataIMDB(imdbID)
-            let modalHTML = `
-                <div class="col mt-5">
-                    <div class="image-container">
-                        <img id="first-category-${i}-img" src="" alt="" class="home-img"> 
-                        <div class="overlay">
-                            <h3 id="first-category-${i}-overlay-title" class="overlay-title"></h3>
-                            <button id="first-category-overlay-btn-${i}" class="overlay-btn">Détails</button>
-                        </div>
-                            <div id="first-category-${i}-modal" class="modal">
-                                <div id="first-category-${i}-modal-content" class="custom-modal-content">
-                                    <div class="custom-modal-header">
-                                        <div class="custom-modal-close" id="custom-modal-close-${i}">&times;</div>
-                                        <h2 id="first-category-${i}-modal-title" class="custom-modal-title"></h2>
-                                        <p id="first-category-${i}-first-line" class="custom-modal-info"></p>
-                                        <p id="first-category-${i}-second-line" class="custom-modal-info"></p>
-                                        <p id="first-category-${i}-third-line" class="custom-modal-info"></p>
-                                        <p id="first-category-${i}-fourth-line" class="custom-modal-info"></p>
-                                        <p><br></p>
-                                        <p class="directors ">Réalisé par :</p>
-                                        <p id="first-category-${i}-fifth-line" class="directors-list"></p>
-                                    </div>
-                                    <div class="custom-modal-image">
-                                        <img id="first-category-${i}-modal-img" src="" class="modal-img">
-                                    </div>
-                                    <div class="custom-modal-resume">
-                                        <p id="first-category-${i}-modal-resume"></p>
-                                    </div>
-                                    <div class="custom-modal-actors">
-                                        <p class="with">Avec:</p>
-                                        <p id="first-category-${i}-modal-actors" class="actors-list"></p>
-                                    </div>
-                                    <div class="custom-modal-footer">
-                                        <button id ="first-category-${i}-modal-close" class="close">Fermer</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`
-    
+            let modalHTML = html("first-category", i)
     
             container.insertAdjacentHTML("beforeend", modalHTML)
             
@@ -310,16 +287,7 @@ function firstCategory() {
                 detailBtn.addEventListener("click", async function() {
                     modal.style.display = "flex"
                     if(movie) {
-                        document.getElementById(`first-category-${i}-modal-img`).src = movie.image_url
-                        document.getElementById(`first-category-${i}-modal-title`).textContent = movie.title
-                        document.getElementById(`first-category-${i}-first-line`).textContent = `${movie.year} - ${movie.genres} `
-                        document.getElementById(`first-category-${i}-second-line`).textContent = `${movieDataIMDB.Runtime} (${movieDataIMDB.Country})`
-                        document.getElementById(`first-category-${i}-third-line`).textContent = `IMDB score : ${movie.imdb_score}/10`
-                        document.getElementById(`first-category-${i}-fourth-line`).textContent = `Recettes au box-office : ${movieDataIMDB.BoxOffice}`
-                        document.getElementById(`first-category-${i}-fifth-line`).textContent = movie.directors
-                        //document.getElementById(`first-category-${i}-modal-pegi`).textContent = movie.genres
-                        document.getElementById(`first-category-${i}-modal-actors`).textContent = `Acteurs : ${movie.actors}`
-                        document.getElementById(`first-category-${i}-modal-resume`).textContent = `Resumé : ${movieDataIMDB.Plot}`
+                        htmlModal("first-category", i, movie, movieDataIMDB)
                     } else {
                         console.warn(`Aucune donnée pour le film ${i}`)
                     }
@@ -369,45 +337,7 @@ function secondCategory(){
             let id = movie.id
             let imdbID = idPrefix + id
             let movieDataIMDB = await getDataIMDB(imdbID)
-            let modalHTML = `
-            <div class="col mt-5">
-                <div class="image-container">
-                    <img id="second-category-${i}-img" src="" alt="" class="home-img"> 
-                    <div class="overlay">
-                            <h3 id="second-category-${i}-overlay-title" class="overlay-title"></h3>
-                            <button id="second-category-overlay-btn-${i}" class="overlay-btn">Détails</button>
-                        </div>
-                        <div id="second-category-${i}-modal" class="modal">
-                            <div id="second-category-${i}-modal-content" class="custom-modal-content">
-                                <div class="custom-modal-header">
-                                    <div class="custom-modal-close" id="custom-modal-close-${i}">&times;</div>
-                                    <h2 id="second-category-${i}-modal-title" class="custom-modal-title"></h2>
-                                    <p id="second-category-${i}-first-line" class="custom-modal-info"></p>
-                                    <p id="second-category-${i}-second-line" class="custom-modal-info"></p>
-                                    <p id="second-category-${i}-third-line" class="custom-modal-info"></p>
-                                    <p id="second-category-${i}-fourth-line" class="custom-modal-info"></p>
-                                    <p><br></p>
-                                    <p class="directors ">Réalisé par :</p>
-                                    <p id="second-category-${i}-fifth-line" class="directors-list"></p>
-                                </div>
-                                <div class="custom-modal-image">
-                                    <img id="second-category-${i}-modal-img" src="" class="modal-img">
-                                </div>
-                                <div class="custom-modal-resume">
-                                    <p id="second-category-${i}-modal-resume"></p>
-                                </div>
-                                <div class="custom-modal-actors">
-                                    <p class="with">Avec:</p>
-                                    <p id="second-category-${i}-modal-actors" class="actors-list"></p>
-                                </div>
-                                <div class="custom-modal-footer">
-                                    <button id ="second-category-${i}-modal-close" class="close">Fermer</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>`
-    
+            let modalHTML = html("second-category", i)
     
             container.insertAdjacentHTML("beforeend", modalHTML)
 
@@ -429,21 +359,7 @@ function secondCategory(){
                 detailBtn.addEventListener("click", async function() {
                     modal.style.display = "flex"
                     if(movie) {
-                        try {
-                            let response = await fetch(movie.image_url)
-                            document.getElementById(`second-category-${i}-modal-img`).src = movie.image_url
-                        } catch(error){
-                            document.getElementById(`second-category-${i}-modal-img`).src = "./assets/img/imgnotfound.png"
-                        }
-                        document.getElementById(`second-category-${i}-modal-title`).textContent = movie.title
-                        document.getElementById(`second-category-${i}-first-line`).textContent = `${movie.year} - ${movie.genres} `
-                        document.getElementById(`second-category-${i}-second-line`).textContent = `${movieDataIMDB.Runtime} (${movieDataIMDB.Country})`
-                        document.getElementById(`second-category-${i}-third-line`).textContent = `IMDB score : ${movie.imdb_score}/10`
-                        document.getElementById(`second-category-${i}-fourth-line`).textContent = `Recettes au box-office : ${movieDataIMDB.BoxOffice}`
-                        document.getElementById(`second-category-${i}-fifth-line`).textContent = movie.directors
-                        //document.getElementById(`second-category-${i}-modal-pegi`).textContent = movie.genres
-                        document.getElementById(`second-category-${i}-modal-actors`).textContent = movie.actors
-                        document.getElementById(`second-category-${i}-modal-resume`).textContent = movieDataIMDB.Plot
+                        htmlModal("second-category", i, movie, movieDataIMDB)
                     } else {
                         console.warn(`Aucune donnée pour le film ${i}`)
                     }
@@ -517,45 +433,7 @@ async function othersCategory(category, page) {
     const maxItems = Math.min(6, nbrElement)
 
     for (let i = 0; i < maxItems; i++) {
-        let modalHTML = `
-            <div class="col mt-5">
-                <div class="image-container">
-                    <img id="others-category-${i}-img" src="" alt="" class="home-img">
-                    <div class="overlay">
-                        <h3 id="others-category-${i}-overlay-title" class="overlay-title"></h3>
-                        <button id="others-category-overlay-btn-${i}" class="overlay-btn">Détails</button>
-                    </div>
-                    <div id="others-category-modal-container"></div>
-                    <div id="others-category-${i}-modal" class="modal">
-                        <div id="others-category-${i}-modal-content" class="custom-modal-content">
-                            <div class="custom-modal-header">
-                                <div class="custom-modal-close" id="custom-modal-close-${i}">&times;</div>
-                                <h2 id="others-category-${i}-modal-title" class="custom-modal-title"></h2>
-                                <p id="others-category-${i}-first-line" class="custom-modal-info"></p>
-                                <p id="others-category-${i}-second-line" class="custom-modal-info"></p>
-                                <p id="others-category-${i}-third-line" class="custom-modal-info"></p>
-                                <p id="others-category-${i}-fourth-line" class="custom-modal-info"></p>
-                                <p><br></p>
-                                <p class="directors">Réalisé par :</p>
-                                <p id="others-category-${i}-fifth-line" class="directors-list"></p>
-                            </div>
-                            <div class="custom-modal-image">
-                                <img id="others-category-${i}-modal-img" src="" class="modal-img">
-                            </div>
-                            <div class="custom-modal-resume">
-                                <p id="others-category-${i}-modal-resume"></p>
-                            </div>
-                            <div class="custom-modal-actors">
-                                <p class="with">Avec:</p>
-                                <p id="others-category-${i}-modal-actors" class="actors-list"></p>
-                            </div>
-                            <div class="custom-modal-footer">
-                                <button id="others-category-${i}-modal-close" class="close">Fermer</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
+        let modalHTML = html("others-category", i)
         container.insertAdjacentHTML("beforeend", modalHTML)
     }
 }
@@ -607,7 +485,6 @@ function addCategoriesToSelect(categories) {
                                 document.getElementById(`others-category-${i}-third-line`).textContent = `IMDB score : ${movie.imdb_score}/10`
                                 document.getElementById(`others-category-${i}-fourth-line`).textContent = `Recettes au box-office : ${movieDataIMDB.BoxOffice}`
                                 document.getElementById(`others-category-${i}-fifth-line`).textContent = movie.directors
-                                //document.getElementById(`others-category-${i}-modal-pegi`).textContent = movie.genres
                                 document.getElementById(`others-category-${i}-modal-actors`).textContent = movie.actors
                                 document.getElementById(`others-category-${i}-modal-resume`).textContent = movieDataIMDB.Plot
                             } else {
